@@ -1,0 +1,84 @@
+<nav class='my-nav'>
+  <div class="nav-wrapper grey darken-4">
+    <ul id="nav-mobile" class="left">
+
+      <li><a href="#"><h4>Vubooks</h4></a></li>
+      <li><a ui-sref='search'> Books</a></li>
+    </ul>
+
+
+    <ul id="nav-mobile" class="right">
+      <li><a href="/auth">Sign In</a></li>
+      <li><a ng-show="currentUser" class="dropdown-button" href="#!" data-activates="dropdown1" dropdown data-beloworigin="true">{{currentUser.un}}<i class="material-icons right">arrow_drop_down</i></a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- DROPDOWN -->
+
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="#!">My Books</a></li>
+  <li><a href="#!">Wishlist</a></li>
+  <li class="divider"></li>
+  <li><a href="#!" ng-click='logout()'>Log Out</a></li>
+</ul>
+
+
+<!-- MODAL -->
+<!-- <div id="modal1" class="modal sign-in">
+    <div class="modal-content">
+      <h4>Sign In</h4>
+      <form class="col s12" action="index.html" method="post">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="username" type="text" ng-model="user.un">
+            <label for="username">Username</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="password" type="password" ng-model="user.pw">
+            <label for="password">Password</label>
+          </div>
+        </div>
+      </form>
+
+      <ul class="collapsible z-depth-0 create-account" data-collapsible="accordion" watch>
+        <li>
+          <div class="collapsible-header">Don't have an account?</div>
+          <div class="collapsible-body">
+            <form class="col s12" action="index.html" method="post">
+              <div class="row">
+                <div class="input-field col s6">
+                  <input  id="first_name" type="text" class="validate">
+                  <label for="first_name">First Name</label>
+                </div>
+                <div class="input-field col s6">
+                  <input id="last_name" type="text" class="validate">
+                  <label for="last_name">Last Name</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="username" type="text">
+                  <label for="username">Username</label>
+                </div>
+                <div class="input-field col s12">
+                  <input id="password" type="password">
+                  <label for="password">Password</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="email" type="email" class="validate">
+                  <label for="email">Email</label>
+                </div>
+              </div>
+            </form>
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat" >Create Account</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect btn" ng-click="login(user)">Sign In</a>
+    </div>
+  </div> -->

@@ -1,0 +1,57 @@
+<div class="page-wrapper">
+
+
+
+<div style="width:100%">
+  <div class="my-side-nav">
+    side nav stuff
+  </div>
+  <div class=''>
+
+    <div class="input-field results center-center" style="display:flex">
+      <input type="text" id='search' ng-model="bsearch" required>
+      <label for="search">Search by title, author, class subject, or ISBN</label>
+      <a ui-sref="search" ng-click='search(bsearch)'><i class='material-icons black-text small'>search</i></a>
+      <button  ng-click='getAllBooks()'>all books</button>
+    </div>
+    <div class="row results" >
+
+      <div class="col s12 m6 l3" ng-repeat='book in books'>
+        <div class="card grey lighten-4 small medium sticky-action">
+
+          <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator book-img" ng-src = '{{book.imgurl}}' >
+          </div>
+
+
+          <div class="card-content">
+            
+            <span class="card-title my-card activator grey-text text-darken-4">{{book.title}}<i class="material-icons right">more_vert</i></span>
+            <!-- <p><a href="#">This is a link</a></p> -->
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">{{book.title}}<i class="material-icons right">close</i></span>
+
+            <p><strong>Author:</strong>{{book.author}}</p>
+            <p><strong>ISBN:</strong>{{book.isbn}}</p>
+          </div>
+          <div class="card-action">
+            <a ui-sref='books( {id: {{book.isbn}} } )'>Details</a>
+            <a tooltipped class='my-hover' data-position="top" data-delay="50" data-tooltip="Add Book"><i class="material-icons right">add</i></a>
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+  </div>
+
+</div>
+</div>
