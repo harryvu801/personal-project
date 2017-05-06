@@ -1,22 +1,31 @@
-<div class="page-wrapper">
+<div class="page-wrapper container">
 
 
 
-<div style="width:100%">
-  <div class="my-side-nav">
-    side nav stuff
+<div class="row">
+  <div class="col s2 my-side-nav">
+    <a class="my-hover" ng-click='getAllBooks()'>all books</a>
+    <a class="my-hover" ng-click='getAllBooks()'>all books</a>
+    <a class="my-hover" ng-click='getAllBooks()'>all books</a>
   </div>
-  <div class=''>
+
+  <ul id="dropdown2" class="dropdown-content">
+    <li><a ng-click= "changeSort(0)">Title</a></li>
+    <li><a ng-click= "changeSort(1)">Author</a></li>
+  </ul>
+
+
+  <div class='col s12 offset-s2'>
 
     <div class="input-field results center-center" style="display:flex">
       <input type="text" id='search' ng-model="bsearch" required>
       <label for="search">Search by title, author, class subject, or ISBN</label>
       <a ui-sref="search" ng-click='search(bsearch)'><i class='material-icons black-text small'>search</i></a>
-      <button  ng-click='getAllBooks()'>all books</button>
+      <li><a class="dropdown-button" href="#!" data-activates="dropdown2" dropdown data-beloworigin="true">Sort By<i class="material-icons right">arrow_drop_down</i></a></li>
     </div>
     <div class="row results" >
 
-      <div class="col s12 m6 l3" ng-repeat='book in books'>
+      <div class="col s12 m6 l3" ng-repeat='book in books | orderBy: x'>
         <div class="card grey lighten-4 small medium sticky-action">
 
           <div class="card-image waves-effect waves-block waves-light">
@@ -25,7 +34,7 @@
 
 
           <div class="card-content">
-            
+
             <span class="card-title my-card activator grey-text text-darken-4">{{book.title}}<i class="material-icons right">more_vert</i></span>
             <!-- <p><a href="#">This is a link</a></p> -->
           </div>
@@ -37,6 +46,17 @@
           </div>
           <div class="card-action">
             <a ui-sref='books( {id: {{book.isbn}} } )'>Details</a>
+            <div class="fixed-action-btn horizontal click-to-toggle">
+              <a class="btn-floating btn-small red">
+                <i class="material-icons">menu</i>
+              </a>
+              <ul>
+                <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+                <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+                <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+                <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+              </ul>
+            </div>
             <a tooltipped class='my-hover' data-position="top" data-delay="50" data-tooltip="Add Book"><i class="material-icons right">add</i></a>
           </div>
 

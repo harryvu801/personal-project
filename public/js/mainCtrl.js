@@ -1,26 +1,9 @@
 app.controller('mainCtrl', function ($scope, mainService,) {
 
-  // $scope.login = function (info) {
-  //   for (var i = 0; i<$scope.users.length; i++) {
-  //     if (info.un == $scope.users[i].un && info.pw == $scope.users[i].pw){
-  //       $scope.currentUser = $scope.users[i];
-  //       localStorage.setItem('user', $scope.currentUser);
-  //     } else {
-  //       alert('failed');
-  //     }
-  //   }
-  // }
-  //
-  // $scope.logout = () => {
-  //   $scope.currentUser = '';
-  // }
+  $scope.x = 'title'
+  $scope.sorts = ['title', 'author']
 
-
-  $scope.getCookie = () => {
-  
-  }
-
-
+  $scope.changeSort= (a) => $scope.x = $scope.sorts[a]
 
   $scope.search = function (val) {
     if (Number(val) && val.length == 13){
@@ -48,7 +31,7 @@ app.controller('mainCtrl', function ($scope, mainService,) {
 
 function getUser() {
   mainService.getUser().then(function(user) {
-    if (user) $scope.user = user.username;
+    if (user) $scope.currentUser = user;
     else   $scope.user = 'NOT LOGGED IN';
   })
 }

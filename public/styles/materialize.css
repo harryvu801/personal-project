@@ -3347,7 +3347,7 @@ nav ul a span.badge {
   width: 90%;
 }
 
-@media only screen and (min-width: 601px) {
+/*@media only screen and (min-width: 601px) {
   .container {
     width: 85%;
   }
@@ -3357,7 +3357,7 @@ nav ul a span.badge {
   .container {
     width: 70%;
   }
-}
+}*/
 
 .container .row {
   margin-left: -0.75rem;

@@ -41,9 +41,9 @@ passport.use(new Auth0Strategy({
    callbackURL:  'http://localhost:3000/auth/callback'
   },
   function(accessToken, refreshToken, extraParams, profile, done) {
-    // console.log(profile);
+    console.log(profile);
     db.getUserByAuthId([profile.id], function(err, user) {
-      // console.log(err);
+      console.log(user);
       // console.log(profile)
       user = user[0];
       if (!user) { //if there isn't one, we'll create one!
@@ -70,7 +70,7 @@ passport.use(new Auth0Strategy({
         }
         db.createUserByAuth(data, function(err, user) {
           console.log('USER CREATED', user);
-          return done(err, user); // GOES TO SERIALIZE USER
+          return done(err, user[0]); // GOES TO SERIALIZE USER
         })
       } else { //when we find the user, return it
         console.log('FOUND USER', user);
@@ -90,6 +90,7 @@ passport.serializeUser(function(userA, done) {
 
 //USER COMES FROM SESSION - THIS IS INVOKED FOR EVERY ENDPOINT
 passport.deserializeUser(function(userB, done) {
+
   //Things you might do here :
     // Query the database with the user id, get other information to put on req.user
   done(null, userB); //PUTS 'USER' ON REQ.USER
@@ -110,18 +111,19 @@ app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/auth/callback',
   passport.authenticate('auth0', {successRedirect: '/#!/'}), function(req, res) {
-    console.log(req.user);
+    // console.log(req.user);
     res.status(200).send(req.user);
 })
 
 app.get('/auth/me', function(req, res) {
-  console.log(req.user);
+  // console.log(req.user);
   if (!req.user) return res.sendStatus(404);
   //THIS IS WHATEVER VALUE WE GOT FROM userC variable above.
   res.status(200).send(req.user);
 })
 
 app.get('/auth/logout', function(req, res) {
+  console.log('at the server')
   req.logout();
   res.redirect('/');
 })

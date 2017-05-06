@@ -71,6 +71,7 @@ this.getUser = function() {
 }
 
 this.logout = function() {
+  console.log('button works');
   return $http({
     method: 'GET',
     url: '/auth/logout'
