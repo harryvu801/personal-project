@@ -41,10 +41,8 @@ passport.use(new Auth0Strategy({
    callbackURL:  'http://localhost:3000/auth/callback'
   },
   function(accessToken, refreshToken, extraParams, profile, done) {
-    console.log(profile);
+    // console.log(profile);
     db.getUserByAuthId([profile.id], function(err, user) {
-      console.log(user);
-      // console.log(profile)
       user = user[0];
       if (!user) { //if there isn't one, we'll create one!
         console.log('CREATING USER');
@@ -54,6 +52,7 @@ passport.use(new Auth0Strategy({
             profile.name.givenName,
             profile.name.familyName,
             profile.displayName,
+            profile.picture,
             profile.id
           ]
 
@@ -64,6 +63,7 @@ passport.use(new Auth0Strategy({
             profile._json.user_metadata.first_name,
             profile._json.user_metadata.last_name,
             profile.displayName,
+            'https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjo2qWA_9_TAhUX7WMKHSTKBrUQjRwIBw&url=https%3A%2F%2Fwww.sportle.tv%2Fprivacy-policy&psig=AFQjCNF0uUQE0PjOnMIT06wc6N_Uf369NQ&ust=1494322416633158',
             profile.id
           ]
 
@@ -143,6 +143,7 @@ app.get('/api/books', function(req, res) {
 })
 
 app.post('/api/books/isbn', function(req, res) {
+  console.log(typeof req.body.isbn, req.body.isbn);
   db.get_books_by_isbn(req.body.isbn, function (err, books) {
     res.send(books)
   })
@@ -151,6 +152,13 @@ app.post('/api/books/isbn', function(req, res) {
 app.post('/api/books', function(req, res) {
   console.log(req.body);
   db.search_books(['%'+req.body.param+'%'], function (err, books) {
+    res.send(books)
+  })
+})
+
+app.post('/api/books/wishlist', function(req, res) {
+  console.log(req.body);
+  db.addBookToWishlist([req.body.user_id, req.body.book_id], function (err, books) {
     res.send(books)
   })
 })

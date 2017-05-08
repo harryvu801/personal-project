@@ -1,8 +1,8 @@
 app.controller('booksCtrl', function($scope, mainService, $stateParams){
 
-
+  // $stateParams.id = localStorage.isbn;
   $scope.getBookDetails = function () {
-    // console.log('function works', $stateParams.id);
+
     return mainService.getBookDetails($stateParams.id).then(function (response) {
       // console.log(response);
       $scope.book =response
@@ -10,5 +10,5 @@ app.controller('booksCtrl', function($scope, mainService, $stateParams){
 
   }()
 
-  
+
 })

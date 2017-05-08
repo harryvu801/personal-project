@@ -3,61 +3,93 @@
 
 
 <div class="row">
-  <div class="col s2 my-side-nav">
-    <a class="my-hover" ng-click='getAllBooks()'>all books</a>
-    <a class="my-hover" ng-click='getAllBooks()'>all books</a>
-    <a class="my-hover" ng-click='getAllBooks()'>all books</a>
+  <div class="col s2 my-side-nav books-nav">
+    <div class="divider"></div>
+    <h5>Books</h5>
+    <ul class='nav-links'>
+      <li><a class="nav-link" ng-click='getAllBooks()'>Book Tabs</a></li>
+      <li><a class="nav-link">Book Tabs</a></li>
+      <li><a class="nav-link">Book Tabs</a></li>
+    </ul>
+    <div class="divider"></div>
   </div>
 
-  <ul id="dropdown2" class="dropdown-content">
-    <li><a ng-click= "changeSort(0)">Title</a></li>
-    <li><a ng-click= "changeSort(1)">Author</a></li>
-  </ul>
 
 
-  <div class='col s12 offset-s2'>
+  <div class='col s10 offset-s2'>
+    <div class="row search-sort">
+      <div class="col s10">
+        <form class="input-field" ng-submit='search(bsearch)'>
+          <i class="material-icons prefix">search</i>
+          <input type="text" id='search' ng-model="bsearch" required>
+          <label for="search">Search by title, author, or ISBN </label>
+        </form>
 
-    <div class="input-field results center-center" style="display:flex">
-      <input type="text" id='search' ng-model="bsearch" required>
-      <label for="search">Search by title, author, class subject, or ISBN</label>
-      <a ui-sref="search" ng-click='search(bsearch)'><i class='material-icons black-text small'>search</i></a>
-      <li><a class="dropdown-button" href="#!" data-activates="dropdown2" dropdown data-beloworigin="true">Sort By<i class="material-icons right">arrow_drop_down</i></a></li>
+      </div>
+        <div class="input-field right col s2">
+         <select material-select watch ng-model='value'>
+           <option value="" disabled selected>Sort by...</option>
+           <option ng-repeat="option in sorts">{{option}}</option>
+         </select>
+        </div>
     </div>
+
+
     <div class="row results" >
+      <div class="col s12" ng-show="searchTerm">
+        Results for "{{searchTerm}}":
+      </div>
 
-      <div class="col s12 m6 l3" ng-repeat='book in books | orderBy: x'>
+
+      <div class="col s6 m4 l3" ng-repeat='book in books | orderBy: value.toLowerCase()'>
         <div class="card grey lighten-4 small medium sticky-action">
-
           <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator book-img" ng-src = '{{book.imgurl}}' >
+            <img class="activator book-img" ng-src = '{{book.imgurl}}'>
+
           </div>
 
 
           <div class="card-content">
+            <span class="card-title truncate activator grey-text text-darken-4">{{book.title}}</span>
+            <span class="activator my-hover"><i class="material-icons right">more_vert</i></span>
 
-            <span class="card-title my-card activator grey-text text-darken-4">{{book.title}}<i class="material-icons right">more_vert</i></span>
-            <!-- <p><a href="#">This is a link</a></p> -->
           </div>
           <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">{{book.title}}<i class="material-icons right">close</i></span>
+            <span class="card-title"><i class="material-icons right">close</i></span>
+            <span class="card-title  grey-text text-darken-4">{{book.title}}</span>
 
             <p><strong>Author:</strong>{{book.author}}</p>
             <p><strong>ISBN:</strong>{{book.isbn}}</p>
           </div>
           <div class="card-action">
             <a ui-sref='books( {id: {{book.isbn}} } )'>Details</a>
-            <div class="fixed-action-btn horizontal click-to-toggle">
-              <a class="btn-floating btn-small red">
-                <i class="material-icons">menu</i>
+            <!-- <a tooltipped class='my-hover' data-position="top" data-delay="50" data-tooltip="Add Book"><i class="material-icons right">add</i></a> -->
+            <div class="fixed-action-btn click-to-toggle right my-fab my-hover">
+              <a>
+                <i class="material-icons">add</i>
               </a>
               <ul>
-                <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-                <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-                <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-                <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+                <li>
+                  <a tooltipped class="btn-floating orange lighten-2"
+                    data-delay="50" data-position="left"
+                    data-tooltip="Add to Wishlist"
+                    message="Added to Wishlist"
+                    duration="2000"
+                    toast='click' ng-click="addBookToWishlist(book.id)">
+                    <i class="material-icons">note_add</i>
+                    </a>
+                  </li>
+                <li>
+                  <a tooltipped class="btn-floating orange lighten-2"
+                  data-delay="50" data-position="left"
+                  data-tooltip="Add to My Books"
+                  message="Added to My Books"
+                  duration="2000" toast='click'>
+                  <i class="material-icons">list</i>
+                </a>
+              </li>
               </ul>
             </div>
-            <a tooltipped class='my-hover' data-position="top" data-delay="50" data-tooltip="Add Book"><i class="material-icons right">add</i></a>
           </div>
 
 

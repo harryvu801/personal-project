@@ -17,6 +17,12 @@ const app = angular.module('app',['ui.router','ui.materialize'])
         controller: 'mainCtrl'
       })
 
+      .state('profile', {
+        url:'/profile',
+        templateUrl: "views/profile.html",
+        controller: 'profCtrl'
+      })
+
       .state('books', {
         url:'/books/:id',
         templateUrl: 'views/books.html',
