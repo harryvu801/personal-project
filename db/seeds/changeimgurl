@@ -1,0 +1,16 @@
+update books
+set imgurl = case bid
+
+when 50 then   'https://img.thriftbooks.com/api/images/m/918768e893653de57c5595464009f4b71feeb17d.jpg'
+when 51 then   'https://images-na.ssl-images-amazon.com/images/I/41eZ4LhchgL._SL230_.jpg'
+when 52 then   'https://images-na.ssl-images-amazon.com/images/I/51D6dCBMZsL._SL230_.jpg'
+when 53 then   'https://images-na.ssl-images-amazon.com/images/I/41dn60kZDKL._SL230_.jpg'
+when 54 then   'https://images-na.ssl-images-amazon.com/images/I/410J6JF0DKL._SL230_.jpg'
+when 55 then   'https://images-na.ssl-images-amazon.com/images/I/51I2yr16FSL._SL230_.jpg'
+when 56 then   'https://images-na.ssl-images-amazon.com/images/I/518voX-bonL._SL230_.jpg'
+when 57 then   'https://images-na.ssl-images-amazon.com/images/I/4141GtIuW4L._SL230_.jpg'
+when 58 then   'https://images-na.ssl-images-amazon.com/images/I/51eDPd8eLtL._SL230_.jpg'
+when 59 then   'https://images-na.ssl-images-amazon.com/images/I/51VFQ7K0KGL._SL230_.jpg'
+
+end
+WHERE bid IN(50,51,52,53,54,55,56,57,58,59);

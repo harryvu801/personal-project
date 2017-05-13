@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col s12">
+    <h5>Messages</h5>
+      <ul class="collapsible popout" data-collapsible="accordion" watch>
+        <li ng-repeat='convo in convos' class="collection-item">
+          <div class="collapsible-header" style="display:flex; align-items:center">
+            <img ng-src='{{convo.pic}}' class="circle">
+            <strong>{{convo.fn}} {{convo.ln}}</strong></div>
+
+
+          <div class="collapsible-body">
+            <div>
+              <p class="refresher" ng-repeat='message in convo.conversation | orderBy:"mid" ' ng-class="{sender: message.sender}">
+                <strong ng-class="{recipient: message.sender}">{{convo.fn}}: </strong>{{message.msg}}</p>
+            </div>
+
+
+            <div class="divider"></div>
+
+
+              <form input-field style="border-box" ng-submit="postMessage(convo)">
+                <input id="search" type="text" ng-model="convo.msg" length="150" style="text-align:right">
+                <label style='right:0;'>Send Message</label>
+              </form>
+          </div>
+
+        </li>
+      </ul>
+  </div>
+<!-- </div> -->

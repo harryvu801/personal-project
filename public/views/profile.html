@@ -3,50 +3,20 @@
 
 
 <div class="row">
-  <div class="col s2 my-side-nav" ng-show="menus">
+  <div class="col s2 my-side-nav prof-nav">
+    <div class="divider"></div>
     <h5>Profile</h5>
     <ul class='nav-links'>
-      <li><a class="my-hover">Profile tabs</a></li>
-      <li><a class="my-hover">Profile tabs</a></li>
-      <li><a class="my-hover">Profile tabs</a></li>
+      <li><a ui-sref="books" class="nav-link">MyBooks</a></li>
+      <li><a ui-sref="messages" class="nav-link">Messages</a></li>
     </ul>
+    <div class="divider"></div>
   </div>
-
-  <div class="col s2 my-side-nav" ng-hide='menus'>
-    <h5>Messages</h5>
-    <ul class='nav-links'>
-      <li><a class="my-hover">Message tabs</a></li>
-      <li><a class="my-hover">Message tabs</a></li>
-      <li><a class="my-hover">Message tabs</a></li>
-    </ul>
-  </div>
-
-
 
   <div class='col s10 offset-s2'>
-    <div class="row">
-      <div class="col s12">
-          <ul tabs reload="allTabContentLoaded">
-              <li class="tab col s3"><a href="#profile" ng-click="menus = true" >Profile</a></li>
-              <li class="tab col s3"><a href="#message" ng-click="menus = false" >Messages</a></li>
-          </ul>
-      </div>
-      <div id="profile" class="col s12">
-        <h4>My Books</h4>
-        <ul class="collection">
-         <li class="collection-item avatar">
-           <img src="images/yuna.jpg" alt="" class="circle">
-           <span class="title">Title</span>
-           <p>First Line <br>
-              Second Line
-           </p>
-           <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-         </li>
-
-       </ul>
-
-      </div>
-      <div id="message" class="col s12">Messages</div>
+    <h4>{{currentUser.first_name}} {{currentUser.last_name}}</h4>
+    <div class="col s12">
+      <main ui-view></main>
     </div>
   </div>
 

@@ -11,13 +11,14 @@ app.service('mainService',function ($http) {
     }
 
   this.getBooksBySearch = function(param) {
+    
     console.log(param);
     return $http({
       method: 'POST',
       url: "/api/books",
       data: {param}
     }).then(function(response){
-      console.log('got response', response.data);
+      // console.log('got response', response.data);
       return response.data
     })
   }
@@ -33,6 +34,96 @@ app.service('mainService',function ($http) {
       return response.data
     })
   }
+
+  this.removeFromWishlist = function(id) {
+    console.log(id);
+    return $http({
+      method: 'PUT',
+      url: '/api/books/wishlist',
+      data: {id}
+    }).then(function(response){
+      console.log('got response');
+    })
+  }
+
+  this.getWishlist = function(id) {
+    return $http({
+      method: 'POST',
+      url: '/api/books/wishlist/id',
+      data: {id}
+    }).then(function(response){
+      // console.log('got response', response.data);
+      return response.data
+    })
+  }
+
+  this.addBookToUserBooks = function(book) {
+    console.log(book);
+    return $http({
+      method: 'POST',
+      url: '/api/books/user',
+      data: book
+    }).then(function(response){
+      console.log('got response', response.data);
+      return response.data
+    })
+  }
+
+  this.removeFromUserBooks = function(id) {
+    console.log(id);
+    return $http({
+      method: 'PUT',
+      url: '/api/books/user',
+      data: {id}
+    }).then(function(response){
+      console.log('got response');
+    })
+  }
+
+  this.getUserBooks = function(id) {
+    return $http({
+      method: 'POST',
+      url: '/api/books/user/id',
+      data: {id}
+    }).then(function(response){
+      // console.log('got response', response.data);
+      return response.data
+    })
+  }
+
+  this.findUsers = function(id) {
+    return $http({
+      method: 'POST',
+      url: '/api/users',
+      data: {id}
+    }).then(function(response){
+      // console.log('got response', response.data);
+      return response.data
+    })
+  }
+
+  this.getMessages = function(id) {
+    return $http({
+      method: 'POST',
+      url: '/api/messages',
+      data: {id}
+    }).then(function(response){
+      // console.log('got response', response.data);
+      return response.data
+    })
+  }
+
+  this.postMessage = function(msg) {
+    return $http({
+      method: 'POST',
+      url: '/api/messages/post',
+      data: msg
+    }).then(function(response){
+      // console.log('got response', response.data);
+      return response.data
+    })
+  }
+
 
 
   this.getBookDetails = function(isbn) {

@@ -1,3 +1,12 @@
+main.ng-enter {
+  opacity: 0;
+  transition: 0.6s;
+}
+
+main.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
 .center-center {
   width: 100%;
   display: flex;
@@ -5,6 +14,20 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.bg {
+  background-image: url('../imgs/lib2.jpg');
+  height: 100vh;
+  width: 100%;
+  background-attachment: fixed;
+  opacity: .5;
+}
+
+.between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .my-hover:hover {
@@ -31,6 +54,7 @@
 }
 
 .nav-link:hover {
+  color: #FFB74B;
   cursor: pointer;
   border-bottom: 1px;
   border-bottom-style: solid;
@@ -45,14 +69,18 @@
   margin-top: 56px;;
 }
 
+.prof-nav {
+  margin-top: 72px;;
+}
+
 .user-icon{
   height: 35px;
   margin-top: 15px;
 }
 
 .search-sort {
-  width: 76%;
-  left: 21%;
+  width: 62%;
+  left: 20%;
   position: fixed;
   z-index: 50;
   background-color: white;
@@ -64,14 +92,15 @@
 }
 
 .my-fab{
-  right: 0;
-  bottom: 17%;
+  right: 10%;
+  bottom: 40%
 }
 
 .bg-video {
   z-index: -100;
   position: absolute;
-  /*height: 100%;*/
+  height: 505px;
+  object-fit: fill;
   width: 100vw;
 }
 
@@ -92,7 +121,7 @@ width: 100%;
   opacity: .7;
   color: white;
   border-radius: 10px;
-
+  padding-right: 3rem;
 }
 
 .banner-title {
@@ -100,8 +129,10 @@ width: 100%;
   color: white;
 }
 
-.book-img {
-  background-size: contain;
+.book-icon {
+  height: 65px;
+  position: absolute;
+  left:15px;
 }
 
 .my-card {
@@ -112,7 +143,7 @@ width: 100%;
 .search {
   height: 60vh;
   background-image: url("../imgs/lib1.jpg");
-  margin-bottom: 25px;
+  /*margin-bottom: 25px;*/
 }
 
 .my-parallax {
@@ -128,6 +159,59 @@ width: 100%;
 
 
 .book-img {
+  background-size: contain;
   height: 300px;
   width: 200px;
+}
+
+.book-details-summary {
+  margin-left: 15px;
+}
+
+.book-details {
+  margin-left: 10px;
+}
+
+.book-details-img {
+  margin-top: 7px;
+  height: 290px;
+  position: fixed;
+}
+
+.u-msgs {
+  height: 80vh;
+}
+
+
+.sender {
+  text-align: right;
+}
+
+.recipient{
+  display: none;
+}
+
+.home-search {
+  left:0;
+}
+
+.collapsible-header .circle {
+    /*position: absolute;*/
+    width: 42px;
+    height: 42px;
+    overflow: hidden;
+    margin: 15px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+a{
+  color: inherit;
+}
+a:hover{
+  cursor:pointer;
+}
+
+h1 {
+  font-size: 9.2rem;
 }

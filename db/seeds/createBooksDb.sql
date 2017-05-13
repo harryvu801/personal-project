@@ -1,5 +1,5 @@
 create table if not exists Books (
-id serial primary key,
+bid serial primary key,
 title varchar(50),
 author varchar(50),
 isbn integer check(isbn > 999999999999),

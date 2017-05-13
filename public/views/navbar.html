@@ -1,15 +1,14 @@
 <nav class='my-nav'>
   <div class="nav-wrapper grey darken-4">
     <ul id="nav-mobile" class="left">
-
-      <li><a href="#"><h4>Vubooks</h4></a></li>
-      <li><a ui-sref='search'> Books</a></li>
+      <li><a href="#" style="display:flex"><h4>vu<strong><b>books</b></strong></h4></a></li>
+      <li><a ui-sref='search' ng-click='reset()'> Books</a></li>
     </ul>
 
 
     <ul id="nav-mobile" class="right">
       <li><a href="/auth" ng-hide="currentUser">Sign In</a></li>
-      <li><img class="user-icon circle" ng-show="currentUser" ng-src="{{currentUser.imgurl}}""></li>
+      <li><img class="user-icon circle" ng-show="currentUser" ng-src="{{currentUser.pic}}"></li>
       <li>
         <a ng-show="currentUser" class="dropdown-button" href="#!" data-activates="dropdown1" dropdown data-beloworigin="true">
           {{currentUser.first_name}}
@@ -23,7 +22,7 @@
 <!-- DROPDOWN -->
 
 <ul id="dropdown1" class="dropdown-content">
-  <li><a ui-sref="profile">Profile</a></li>
+  <li><a ui-sref="books">Profile</a></li>
   <li class="divider"></li>
   <li><a href="/auth/logout">Log Out</a></li>
 </ul>

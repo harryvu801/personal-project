@@ -4514,6 +4514,7 @@ if (jQuery) {
       }
     });
 
+
     // Toolbar transition behaviour.
     $(document).on('click.fabToolbar', '.fixed-action-btn.toolbar > a', function(e) {
       var $this = $(this);

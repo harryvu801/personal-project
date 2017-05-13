@@ -1,5 +1,5 @@
 
-const app = angular.module('app',['ui.router','ui.materialize'])
+const app = angular.module('app',['ui.router','ui.materialize','ngAnimate'])
   .config(function ($stateProvider, $urlRouterProvider){
 
     $urlRouterProvider.when('','/')
@@ -8,7 +8,7 @@ const app = angular.module('app',['ui.router','ui.materialize'])
       .state('home', {
         url:'/',
         templateUrl:"views/home.html",
-        controller:'mainCtrl'
+        controller:'homeCtrl'
       })
 
       .state('search', {
@@ -24,8 +24,17 @@ const app = angular.module('app',['ui.router','ui.materialize'])
       })
 
       .state('books', {
-        url:'/books/:id',
+        parent: 'profile',
+        url:'/books',
         templateUrl: 'views/books.html',
-        controller: 'booksCtrl'
+        controller: 'profCtrl'
       })
+
+      .state('messages', {
+        parent: 'profile',
+        url:'/messages',
+        templateUrl: 'views/messages.html',
+        controller: 'profCtrl'
+      })
+
   })

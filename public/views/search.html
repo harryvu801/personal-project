@@ -1,109 +1,70 @@
 <div class="page-wrapper container">
-
-
-
-<div class="row">
-  <div class="col s2 my-side-nav books-nav">
-    <div class="divider"></div>
-    <h5>Books</h5>
-    <ul class='nav-links'>
-      <li><a class="nav-link" ng-click='getAllBooks()'>Book Tabs</a></li>
-      <li><a class="nav-link">Book Tabs</a></li>
-      <li><a class="nav-link">Book Tabs</a></li>
-    </ul>
-    <div class="divider"></div>
-  </div>
-
-
-
-  <div class='col s10 offset-s2'>
-    <div class="row search-sort">
-      <div class="col s10">
-        <form class="input-field" ng-submit='search(bsearch)'>
-          <i class="material-icons prefix">search</i>
-          <input type="text" id='search' ng-model="bsearch" required>
-          <label for="search">Search by title, author, or ISBN </label>
-        </form>
-
-      </div>
+  <!-- <div class="bg"></div> -->
+  <div class="row">
+    <!-- <div class="col s2 my-side-nav books-nav">
+      <div class="divider"></div>
+      <h5>Books</h5>
+      <ul class='nav-links'>
+        <li><a class="nav-link" ng-click='getAllBooks()'>Book Tabs</a></li>
+        <li><a class="nav-link">Book Tabs</a></li>
+        <li><a class="nav-link">Book Tabs</a></li>
+      </ul>
+      <div class="divider"></div>
+    </div> -->
+    <div class='col s8 offset-s2'>
+      <div class="row search-sort">
+        <div class="col s10">
+          <form class="input-field" ng-submit='search(bsearch)'>
+            <i class="material-icons prefix">search</i>
+            <input type="text" id='search' ng-model="bsearch" required>
+            <label for="search">Search by title, author, or ISBN </label>
+          </form>
+        </div>
         <div class="input-field right col s2">
          <select material-select watch ng-model='value'>
            <option value="" disabled selected>Sort by...</option>
            <option ng-repeat="option in sorts">{{option}}</option>
          </select>
         </div>
-    </div>
-
-
-    <div class="row results" >
-      <div class="col s12" ng-show="searchTerm">
-        Results for "{{searchTerm}}":
       </div>
-
-
-      <div class="col s6 m4 l3" ng-repeat='book in books | orderBy: value.toLowerCase()'>
-        <div class="card grey lighten-4 small medium sticky-action">
-          <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator book-img" ng-src = '{{book.imgurl}}'>
-
-          </div>
-
-
-          <div class="card-content">
-            <span class="card-title truncate activator grey-text text-darken-4">{{book.title}}</span>
-            <span class="activator my-hover"><i class="material-icons right">more_vert</i></span>
-
-          </div>
-          <div class="card-reveal">
-            <span class="card-title"><i class="material-icons right">close</i></span>
-            <span class="card-title  grey-text text-darken-4">{{book.title}}</span>
-
-            <p><strong>Author:</strong>{{book.author}}</p>
-            <p><strong>ISBN:</strong>{{book.isbn}}</p>
-          </div>
-          <div class="card-action">
-            <a ui-sref='books( {id: {{book.isbn}} } )'>Details</a>
-            <!-- <a tooltipped class='my-hover' data-position="top" data-delay="50" data-tooltip="Add Book"><i class="material-icons right">add</i></a> -->
-            <div class="fixed-action-btn click-to-toggle right my-fab my-hover">
-              <a>
-                <i class="material-icons">add</i>
-              </a>
-              <ul>
-                <li>
-                  <a tooltipped class="btn-floating orange lighten-2"
-                    data-delay="50" data-position="left"
-                    data-tooltip="Add to Wishlist"
-                    message="Added to Wishlist"
-                    duration="2000"
-                    toast='click' ng-click="addBookToWishlist(book.id)">
-                    <i class="material-icons">note_add</i>
-                    </a>
-                  </li>
-                <li>
-                  <a tooltipped class="btn-floating orange lighten-2"
-                  data-delay="50" data-position="left"
-                  data-tooltip="Add to My Books"
-                  message="Added to My Books"
-                  duration="2000" toast='click'>
-                  <i class="material-icons">list</i>
-                </a>
-              </li>
-              </ul>
-            </div>
-          </div>
-
-
+      <div class="row results" >
+        <div class="col s12" ng-show="searchTerm">
+          <h5>Results for "{{searchTerm}}":</h5>
         </div>
 
+        <!-- CARDS BEGIN HERE -->
+
+        <div class="col s6 m4 l3" ng-repeat='book in books | orderBy: value.toLowerCase()'>
+          <div class="card grey lighten-4 small sticky-action">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator book-img" ng-src = '{{book.imgurl}}'>
+            </div>
+            <div class="card-content">
+              <span class="card-title grey-text text-darken-4">{{book.title}}</span>
+            </div>
+            <div class="card-action">
+              <a class="my-hover"
+                tooltipped data-delay="50"
+                data-position="top"
+                data-tooltip="See Book Details"
+                data-target='demoModal' modal
+                ng-click="getBookDetails(book.isbn)">More...</a>
+              <a class="my-hover right"
+                tooltipped data-delay="50"
+                data-position="top"
+                data-tooltip="Add to Wishlist"
+                message="Added to Wishlist"
+                duration="2000" toast='click'
+                ng-show="currentUser"
+                ng-click="addBookToWishlist(book.bid)">
+                <i class="material-icons">note_add</i>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-
     </div>
-
-
-
-
-
   </div>
+</div>
 
-</div>
-</div>
+<modal></modal>

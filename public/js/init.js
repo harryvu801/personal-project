@@ -1,9 +1,13 @@
-(function($){
-  $(function(){
+//$(document).ready(function() {
 
-    $('.button-collapse').sideNav();
-    $('.parallax').parallax();
-    $('.collapsible').collapsible();
-
-  }); // end of document ready
-})(jQuery); // end of jQuery name space
+    // function scrolly(){
+    //     $(‘ul li a’).click(function(e){
+    //         // e.preventDefault();
+    //         var sectionId = e.currentTarget.id + “Section”;
+    //         console.log(e.currentTarget.id);
+    //         $(‘html body’).animate({
+    //             scrollTop: $(“#” + sectionId).offset().top
+    //         }, 1000)
+    //     })
+    // }
+//}); // end of document ready
