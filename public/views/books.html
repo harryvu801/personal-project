@@ -5,7 +5,7 @@
       <li class='collection-header'><h5>My Books</h5></li>
        <li class="collection-item avatar" ng-repeat='book in userBooks'>
          <a><img ng-src="{{book.imgurl}}" class="book-icon"></a>
-         <span class="title"><a ui-sref='books( {id: {{book.isbn}} } )'><strong>{{book.title}}</strong></a></span>
+         <span class="title"><a><strong>{{book.title}}</strong></a></span>
          <p>
            <strong>ISBN: </strong> {{book.isbn}} </br>
            <strong>Publisher: </strong>{{book.publisher}}
@@ -81,7 +81,7 @@
         tooltipped data-delay="50"
         data-position="left"
         data-tooltip="Send a message">
-        <i class="material-icons" ng-click="clicked(user.id)">send</i></a>
+        <i class="material-icons" ui-sref="messages">send</i></a>
       </li>
     </ul>
     <a class="waves-effect waves-light btn right orange lighten-2" ng-click="users = false">Back</a>

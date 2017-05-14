@@ -46,19 +46,22 @@ app.controller('profCtrl', function ($scope, mainService, $state) {
 
 
   $scope.postMessage = (convo)=> {
+    console.log(convo);
     let newMessage = {
       s:$scope.currentUser.id,
       r: convo.person,
       msg: convo.msg
     }
-    mainService.postMessage(newMessage)
-    .then(function(res){
-      res[0].sender = true;
-      console.log(res);
-      $scope.convos.find((x)=>x.person===res[0].recipient).conversation.push(res[0]);
-      console.log($scope.convos[2]);
-    })
-    $scope.convo = "";
+    $scope.convos[$scope.convos.indexOf($scope.convos.find((x)=>x.person===convo.person))]
+    .conversation.push(
+      {
+        mid:$scope.convos.find((x)=>x.person===convo.person).conversation[0].mid + 1,
+        msg:convo.msg,
+        sender:true
+      }
+    );
+    convo.msg = "";
+    mainService.postMessage(newMessage);
   }
 
   //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

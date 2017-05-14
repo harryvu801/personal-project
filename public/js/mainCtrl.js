@@ -6,14 +6,15 @@ app.controller('mainCtrl', function ($scope, mainService, $state) {
   $scope.reset = function(){
     sessionStorage.setItem('search', '');
     console.log(sessionStorage.search);
-    $scope.books= ''
+    $scope.books= '';
+    $scope.searchTerm = '';
     $state.go('search')
   }
 
 
   $scope.search = function (val) {
     console.log(val);
-  if (val) {  
+  if (val) {
     $scope.searchTerm = val;
       return mainService.getBooksBySearch(val).then(function(response){
         console.log(response);
