@@ -131,7 +131,7 @@ passport.use(new Auth0Strategy({
   domain:       "harryvu.auth0.com",
   clientID:     "JOE8L_mVN5scHzj-umtZwYGE5tO5AYMU",
   clientSecret: "ufPrSFuTNGI20tVmr7TbXS31mEcgfpjM0OJlCxJx8u98Hti2R5qPKl9VpgN2dySb",
-  callbackURL:  'http://localhost:3000/auth/callback'
+  callbackURL:  'http://138.197.202.21/auth/callback'
 },
 function(accessToken, refreshToken, extraParams, profile, done) {
   // console.log(profile);
