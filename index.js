@@ -23,8 +23,10 @@ app.use(express.static(__dirname + '/public'));
 app.use(cors());
 
 const conn = massive.connectSync({
-  connectionString : "postgres://postgres:@localhost:5432/Vubooks"
+  connectionString : "postgres://ffpxleit:HZsGTaoYdCj9AoQN7fI1v05dQ0N9D5L0@stampy.db.elephantsql.com:5432/ffpxleit"
 });
+
+//
 
 app.set('db', conn);
 const db = app.get('db');
