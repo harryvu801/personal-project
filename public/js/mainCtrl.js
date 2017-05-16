@@ -1,9 +1,9 @@
-app.controller('mainCtrl', function ($scope, mainService, $state) {
+app.controller('mainCtrl', ($scope, mainService, $state) => {
   $scope.sorts = ['Title', 'Author'];
 
   $scope.clicked = (x)=> console.log(x);
 
-  $scope.reset = function(){
+  $scope.reset = ()=>{
     sessionStorage.setItem('search', '');
     console.log(sessionStorage.search);
     $scope.books= '';
@@ -12,11 +12,11 @@ app.controller('mainCtrl', function ($scope, mainService, $state) {
   }
 
 
-  $scope.search = function (val) {
+  $scope.search =  (val)=> {
     console.log(val);
   if (val) {
     $scope.searchTerm = val;
-      return mainService.getBooksBySearch(val).then(function(response){
+      return mainService.getBooksBySearch(val).then((response)=>{
         console.log(response);
         $scope.books = response;
         $scope.bsearch = '';
@@ -29,15 +29,15 @@ app.controller('mainCtrl', function ($scope, mainService, $state) {
   }
   searchFromHome();
 
-  $scope.getAllBooks = function() {
-    return mainService.getAllBooks().then(function (response){
+  $scope.getAllBooks = ()=> {
+    return mainService.getAllBooks().then((response)=>{
       $scope.books = response;
       $scope.searchTerm = "";
     })
   }
 
-  $scope.addBookToWishlist = function(bookId) {
-    var wish =
+  $scope.addBookToWishlist = (bookId)=> {
+    let wish =
     {
       user_id: $scope.currentUser.id,
       book_id: parseInt(bookId)
@@ -45,8 +45,8 @@ app.controller('mainCtrl', function ($scope, mainService, $state) {
     mainService.addBookToWishlist(wish)
   }
 
-  $scope.addBookToUserBooks = function(book) {
-    var book =
+  $scope.addBookToUserBooks = (info)=> {
+    let book =
     {
       user_id: $scope.currentUser.id,
       book_id: book.bid,
@@ -61,7 +61,7 @@ app.controller('mainCtrl', function ($scope, mainService, $state) {
 //////////////////
 
   function getUser() {
-    mainService.getUser().then(function(user) {
+    mainService.getUser().then((user)=> {
       console.log($scope.currentUser);
       if (user) $scope.currentUser = user;
       else   $scope.user = 'NOT LOGGED IN';
@@ -73,20 +73,20 @@ app.controller('mainCtrl', function ($scope, mainService, $state) {
 
   $scope.logout = mainService.logout;
 
-  $('#search').keypress(function(e){
+  $('#search').keypress((e)=>{
       if(e.which == 13){
           $(this).blur();
       }
   });
 
-  $scope.getBookDetails = function (isbn) {
-    return mainService.getBookDetails(isbn).then(function (response) {
+  $scope.getBookDetails = (isbn)=> {
+    return mainService.getBookDetails(isbn).then( (response)=> {
       console.log(response);
       $scope.book = response[0];
     });
   }
 
-}).directive('modal',function () {
+}).directive('modal', ()=> {
   return {
     restrict: 'E',
     templateUrl: 'views/modal.html',

@@ -10,30 +10,30 @@ var gulp = require('gulp')
 var cachebust = new Cachebuster();
 
 gulp.task('build-css', function() {
-  gulp.src('./styles/*')
+  gulp.src('./public/styles/*')
     .pipe(sourcemaps.init())
     .pipe(sass())
     .pipe(cachebust.resources())
     .pipe(concat('styles.css'))
     .pipe(sourcemaps.write('./maps'))
-    .pipe(gulp.dest('./dist'))
+    .pipe(gulp.dest('./public/dist'))
 })
 
 gulp.task('build-js', function() {
-   return gulp.src('js/*.js')
+   return gulp.src('./public/js/*.js')
       .pipe(sourcemaps.init())
       .pipe(print())
       .pipe(babel({ presets: ['es2015'] }))
       .pipe(concat('bundle.js'))
       //.pipe(uglify())
       .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest('./dist/js'));
+      .pipe(gulp.dest('./public/dist/js'));
 });
 
 gulp.task('build', [ 'build-css', 'build-js'], function() {
     return gulp.src('index.html')
         .pipe(cachebust.references())
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('./public/dist'));
 });
 
 gulp.task('watch', function() {

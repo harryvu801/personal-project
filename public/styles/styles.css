@@ -17,7 +17,7 @@ main.ng-enter.ng-enter-active {
 }
 
 .bg {
-  background-image: url('../imgs/lib2.jpg');
+  background-image: url('../public/img/lib2.jpg');
   height: 100vh;
   width: 100%;
   background-attachment: fixed;
@@ -214,4 +214,26 @@ a:hover{
 
 h1 {
   font-size: 9.2rem;
+}
+
+@media (max-width:600px) {
+  .hero-title h1 {
+    font-size: 5.2rem;
+  }
+
+  .hero-title h4 {
+    font-size: 1.28rem;
+  }
+
+  .divider-section {
+    height: 720px;
+  }
+
+  .banner-title {
+    font-size: 2.56;
+  }
+
+  .mobile {
+    display: none;
+  }
 }

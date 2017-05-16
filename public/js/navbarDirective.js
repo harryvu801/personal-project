@@ -1,4 +1,4 @@
-app.directive('navbarDirective',function () {
+app.directive('navbarDirective',()=> {
   return {
     restrict: 'E',
     templateUrl: 'views/navbar.html',

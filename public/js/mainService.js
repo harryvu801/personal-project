@@ -1,124 +1,124 @@
-app.service('mainService',function ($http) {
-  this.broken = "working";
+app.service('mainService', function ($http) {
+  // this.broken = "working";
 
-    this.getAllBooks = function() {
+    this.getAllBooks = ()=> {
       return $http({
         method: 'GET',
         url: "/api/books"
-      }).then(function(response){
+      }).then((response)=>{
         return response.data
       })
     }
 
-  this.getBooksBySearch = function(param) {
-    
+  this.getBooksBySearch = (param)=> {
+
     console.log(param);
     return $http({
       method: 'POST',
       url: "/api/books",
       data: {param}
-    }).then(function(response){
+    }).then((response)=>{
       // console.log('got response', response.data);
       return response.data
     })
   }
 
-  this.addBookToWishlist = function(book) {
+  this.addBookToWishlist = (book)=> {
     console.log(book);
     return $http({
       method: 'POST',
       url: '/api/books/wishlist',
       data: book
-    }).then(function(response){
+    }).then((response)=>{
       console.log('got response', response.data);
       return response.data
     })
   }
 
-  this.removeFromWishlist = function(id) {
+  this.removeFromWishlist = (id)=> {
     console.log(id);
     return $http({
       method: 'PUT',
       url: '/api/books/wishlist',
       data: {id}
-    }).then(function(response){
+    }).then((response)=>{
       console.log('got response');
     })
   }
 
-  this.getWishlist = function(id) {
+  this.getWishlist = (id)=> {
     return $http({
       method: 'POST',
       url: '/api/books/wishlist/id',
       data: {id}
-    }).then(function(response){
+    }).then((response)=>{
       // console.log('got response', response.data);
       return response.data
     })
   }
 
-  this.addBookToUserBooks = function(book) {
+  this.addBookToUserBooks = (book)=> {
     console.log(book);
     return $http({
       method: 'POST',
       url: '/api/books/user',
       data: book
-    }).then(function(response){
+    }).then((response)=>{
       console.log('got response', response.data);
       return response.data
     })
   }
 
-  this.removeFromUserBooks = function(id) {
+  this.removeFromUserBooks = (id)=> {
     console.log(id);
     return $http({
       method: 'PUT',
       url: '/api/books/user',
       data: {id}
-    }).then(function(response){
+    }).then((response)=>{
       console.log('got response');
     })
   }
 
-  this.getUserBooks = function(id) {
+  this.getUserBooks = (id)=> {
     return $http({
       method: 'POST',
       url: '/api/books/user/id',
       data: {id}
-    }).then(function(response){
+    }).then((response)=>{
       // console.log('got response', response.data);
       return response.data
     })
   }
 
-  this.findUsers = function(id) {
+  this.findUsers = (id)=> {
     return $http({
       method: 'POST',
       url: '/api/users',
       data: {id}
-    }).then(function(response){
+    }).then((response)=>{
       // console.log('got response', response.data);
       return response.data
     })
   }
 
-  this.getMessages = function(id) {
+  this.getMessages = (id)=> {
     return $http({
       method: 'POST',
       url: '/api/messages',
       data: {id}
-    }).then(function(response){
+    }).then((response)=>{
       // console.log('got response', response.data);
       return response.data
     })
   }
 
-  this.postMessage = function(msg) {
+  this.postMessage = (msg)=> {
     return $http({
       method: 'POST',
       url: '/api/messages/post',
       data: msg
-    }).then(function(response){
+    }).then((response)=>{
       // console.log('got response', response.data);
       return response.data
     })
@@ -126,13 +126,13 @@ app.service('mainService',function ($http) {
 
 
 
-  this.getBookDetails = function(isbn) {
+  this.getBookDetails = (isbn)=> {
     // console.log( typeof isbn);
     return $http({
       method: 'POST',
       url: "/api/books/isbn",
       data: {isbn}
-    }).then(function(response){
+    }).then((response)=>{
       return response.data
     })
   }
@@ -146,30 +146,30 @@ app.service('mainService',function ($http) {
   ////////////////////
 
 
-this.getUser = function() {
+this.getUser = ()=> {
   return $http({
     method: 'GET',
     url: '/auth/me'
   })
-  .then(function(res) {
+  .then((res)=> {
     // console.log(res.data);
     return res.data;
   })
-  .catch(function(err) {
+  .catch((err)=> {
     console.log(err);
   })
 }
 
-this.logout = function() {
+this.logout = ()=> {
   console.log('button works');
   return $http({
     method: 'GET',
     url: '/auth/logout'
   })
-  .then(function(res) {
+  .then((res)=> {
     return res.data;
   })
-  .catch(function(err) {
+  .catch((err)=> {
     console.log(err);
   })
 }

@@ -1,4 +1,4 @@
-app.controller('homeCtrl', function ($scope, mainService, $state) {
+app.controller('homeCtrl',  ($scope, mainService, $state)=> {
 
   function getUser() {
     mainService.getUser().then(function(user) {
@@ -11,7 +11,7 @@ app.controller('homeCtrl', function ($scope, mainService, $state) {
 
 
 
-  $scope.searchFromHome = function(val) {
+  $scope.searchFromHome = (val)=> {
     sessionStorage.setItem('search', val);
     $state.go('search');
   }

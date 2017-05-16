@@ -1,9 +1,9 @@
-app.controller('profCtrl', function ($scope, mainService, $state) {
+app.controller('profCtrl', ($scope, mainService, $state)=> {
 
   $scope.userBooks= [];
 
   function getUser() {
-    mainService.getUser().then(function(user) {
+    mainService.getUser().then((user)=> {
       console.log('USER DATA',user);
       if (user) $scope.currentUser = user;
       else   $scope.currentUser = 'NOT LOGGED IN';
@@ -12,7 +12,7 @@ app.controller('profCtrl', function ($scope, mainService, $state) {
   getUser();
 
   function getWishlist() {
-    mainService.getWishlist($scope.currentUser.id).then(function(res) {
+    mainService.getWishlist($scope.currentUser.id).then((res)=> {
       $scope.wishlist = res;
       // console.log('WISHLIST DATA',res);
     })
@@ -25,7 +25,7 @@ app.controller('profCtrl', function ($scope, mainService, $state) {
  }
 
  function getUserBooks() {
-   mainService.getUserBooks($scope.currentUser.id).then(function(res) {
+   mainService.getUserBooks($scope.currentUser.id).then((res)=> {
      $scope.userBooks = res;
     //  console.log('USER BOOKS DATA',res);
    })
@@ -38,7 +38,7 @@ app.controller('profCtrl', function ($scope, mainService, $state) {
   }
 
   $scope.findUsers = (id)=> {
-    mainService.findUsers(id).then(function(res){
+    mainService.findUsers(id).then((res)=>{
       // console.log("FIND USERS DATA", res);
       $scope.users = res;
     });
@@ -66,7 +66,7 @@ app.controller('profCtrl', function ($scope, mainService, $state) {
 
   //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   function getMessages() {
-    mainService.getMessages($scope.currentUser.id).then(function(res){
+    mainService.getMessages($scope.currentUser.id).then((res)=>{
       $scope.convos = [];
       for(let i = 0; res.length > i; i++) {
       let found = false;
@@ -109,7 +109,7 @@ app.controller('profCtrl', function ($scope, mainService, $state) {
   getMessages();
   //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-  $('#search').keypress(function(e){
+  $('#search').keypress((e)=>{
       if(e.which == 13){
           $(this).blur();
       }

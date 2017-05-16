@@ -37,88 +37,91 @@ const db = app.get('db');
 
 
 
-app.get('/api/books', function(req, res) {
-  db.get_all_books(function (err, books) {
+app.get('/api/books', (req, res) =>{
+  db.get_all_books( (err, books) =>{
     res.send(books)
   })
 })
 
-app.post('/api/books/isbn', function(req, res) {
+app.post('/api/books/isbn', (req, res) =>{
   // console.log(typeof req.body.isbn, req.body.isbn);
-  db.get_books_by_isbn(req.body.isbn, function (err, books) {
+  db.get_books_by_isbn(req.body.isbn,  (err, books)=> {
     res.send(books)
   })
 })
 
-app.post('/api/books', function(req, res) {
+app.post('/api/books', (req, res) =>{
   console.log(req.body);
-  db.search_books(['%'+req.body.param+'%'], function (err, books) {
+  db.search_books(['%'+req.body.param+'%'],  (err, books)=> {
     console.log(err);
     res.send(books)
   })
 })
 
-app.post('/api/books/wishlist', function(req, res) {
+app.post('/api/books/wishlist', (req, res) =>{
   console.log(req.body);
-  db.addBookToWishlist([req.body.user_id, req.body.book_id], function (err, books) {
+  db.addBookToWishlist([req.body.user_id, req.body.book_id],  (err, books)=> {
     res.send(books)
   })
 })
 
-app.put('/api/books/wishlist', function(req, res) {
+app.put('/api/books/wishlist', (req, res) =>{
   console.log(req.body);
-  db.removeFromWishlist([req.body.id], function (err, list) {
+  db.removeFromWishlist([req.body.id],  (err, list) =>{
     console.log(err);
   })
 })
 
-app.post('/api/books/wishlist/id', function(req, res) {
+app.post('/api/books/wishlist/id', (req, res) =>{
   // console.log(req.body);
-  db.getWishlist([req.body.id], function (err, list) {
+  db.getWishlist([req.body.id],  (err, list) =>{
     res.send(list)
   })
 })
 
-app.post('/api/books/user', function(req, res) {
+app.post('/api/books/user', (req, res) =>{
   console.log(req.body);
-  db.addBookToUserBooks([req.body.user_id, req.body.book_id, , req.body.condition], function (err, books) {
+  db.addBookToUserBooks([req.body.user_id, req.body.book_id, , req.body.condition],  (err, books)=> {
     console.log(err);
     res.send(books)
   })
 })
 
-app.put('/api/books/user', function(req, res) {
+app.put('/api/books/user', (req, res) =>{
   console.log(req.body);
-  db.removeFromUserBooks([req.body.id], function (err, list) {
+  db.removeFromUserBooks([req.body.id],  (err, list)=> {
     console.log(err);
   })
 })
 
-app.post('/api/books/user/id', function(req, res) {
+app.post('/api/books/user/id', (req, res) =>{
   // console.log(req.body);
-  db.getUserBooks([req.body.id], function (err, list) {
+  db.getUserBooks([req.body.id],  (err, list)=> {
     res.send(list)
   })
 })
 
-app.post('/api/users', function(req, res) {
+app.post('/api/users', (req, res) =>{
   // console.log(req.body);
-  db.findUsers([req.body.id], function (err, users) {
+  db.findUsers([req.body.id],  (err, users)=> {
     res.send(users)
   })
 })
 
-app.post('/api/messages', function(req, res) {
-  db.getMessages([req.body.id], function (err, sent) {
-    db.getMessages2([req.body.id], function(err, recv) {
-      res.send(sent.concat(recv));
+app.post('/api/messages', (req, res) =>{
+  db.getMessages([req.body.id],  (err, sent) =>{
+    db.getMessages2([req.body.id], (err, recv)=> {
+      if (sent) {
+        res.send(sent.concat(recv));
+      }
+
     })
   });
 })
 
 
-app.post('/api/messages/post', function(req, res) {
-  db.postMessage([req.body.s, req.body.r, req.body.msg], function (err, msg) {
+app.post('/api/messages/post', (req, res) =>{
+  db.postMessage([req.body.s, req.body.r, req.body.msg],  (err, msg)=> {
     res.send(msg)
   });
 })
@@ -131,16 +134,16 @@ passport.use(new Auth0Strategy({
   domain:       "harryvu.auth0.com",
   clientID:     "JOE8L_mVN5scHzj-umtZwYGE5tO5AYMU",
   clientSecret: "ufPrSFuTNGI20tVmr7TbXS31mEcgfpjM0OJlCxJx8u98Hti2R5qPKl9VpgN2dySb",
-  callbackURL:  'http://138.197.202.21/auth/callback'
+  callbackURL:  'http://localhost:3000/auth/callback'
 },
-function(accessToken, refreshToken, extraParams, profile, done) {
+(accessToken, refreshToken, extraParams, profile, done) => {
   // console.log(profile);
-  db.getUserByAuthId([profile.id], function(err, user) {
+  db.getUserByAuthId([profile.id], (err, user) =>{
     user = user[0];
     if (!user) { //if there isn't one, we'll create one!
     console.log('CREATING USER');
     if (profile.name.familyName && profile.name.givenName) {
-      var data =
+      let data =
       [
         profile.name.givenName,
         profile.name.familyName,
@@ -151,7 +154,7 @@ function(accessToken, refreshToken, extraParams, profile, done) {
 
     } else {
 
-      var data =
+      let data =
       [
         profile._json.user_metadata.first_name,
         profile._json.user_metadata.last_name,
@@ -161,7 +164,7 @@ function(accessToken, refreshToken, extraParams, profile, done) {
       ]
 
     }
-    db.createUserByAuth(data, function(err, user) {
+    db.createUserByAuth(data, (err, user) =>{
       console.log('USER CREATED', user);
       return done(err, user[0]); // GOES TO SERIALIZE USER
     })
@@ -174,7 +177,7 @@ function(accessToken, refreshToken, extraParams, profile, done) {
 ));
 
 //THIS IS INVOKED ONE TIME TO SET THINGS UP
-passport.serializeUser(function(userA, done) {
+passport.serializeUser((userA, done) =>{
   // console.log('serializing', userA);
   //Things you might do here :
   //Serialize just the id, get other information to add to session,
@@ -182,7 +185,7 @@ passport.serializeUser(function(userA, done) {
 });
 
 //USER COMES FROM SESSION - THIS IS INVOKED FOR EVERY ENDPOINT
-passport.deserializeUser(function(userB, done) {
+passport.deserializeUser((userB, done)=> {
 
   //Things you might do here :
   // Query the database with the user id, get other information to put on req.user
@@ -195,19 +198,19 @@ app.get('/auth', passport.authenticate('auth0'));
 
 
 app.get('/auth/callback',
-passport.authenticate('auth0', {successRedirect: '/#!/'}), function(req, res) {
+passport.authenticate('auth0', {successRedirect: '/#!/'}), (req, res)=> {
   // console.log(req.user);
   res.status(200).send(req.user);
 })
 
-app.get('/auth/me', function(req, res) {
+app.get('/auth/me', (req, res)=> {
   // console.log(req.user);
   if (!req.user) return res.sendStatus(404);
   //THIS IS WHATEVER VALUE WE GOT FROM userC variable above.
   res.status(200).send(req.user);
 })
 
-app.get('/auth/logout', function(req, res) {
+app.get('/auth/logout', (req, res)=> {
   console.log('at the server')
   req.logout();
   res.redirect('/');
@@ -216,6 +219,6 @@ app.get('/auth/logout', function(req, res) {
 
 
 
-app.listen('3000', function(){
+app.listen('3000', ()=>{
   console.log("Successfully listening on : 3000")
 })

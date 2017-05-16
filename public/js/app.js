@@ -1,6 +1,6 @@
 
 const app = angular.module('app',['ui.router','ui.materialize','ngAnimate'])
-  .config(function ($stateProvider, $urlRouterProvider){
+  .config( ($stateProvider, $urlRouterProvider)=>{
 
     $urlRouterProvider.when('','/')
 

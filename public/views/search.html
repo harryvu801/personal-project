@@ -1,28 +1,18 @@
 <div class="page-wrapper container">
   <!-- <div class="bg"></div> -->
   <div class="row">
-    <!-- <div class="col s2 my-side-nav books-nav">
-      <div class="divider"></div>
-      <h5>Books</h5>
-      <ul class='nav-links'>
-        <li><a class="nav-link" ng-click='getAllBooks()'>Book Tabs</a></li>
-        <li><a class="nav-link">Book Tabs</a></li>
-        <li><a class="nav-link">Book Tabs</a></li>
-      </ul>
-      <div class="divider"></div>
-    </div> -->
     <div class='col m10 l8 offset-m1 offset-l2'>
       <div class="row search-sort">
         <div class="col s10">
           <form class="input-field" ng-submit='search(bsearch)'>
             <i class="material-icons prefix">search</i>
             <input type="text" id='search' ng-model="bsearch" required>
-            <label for="search">Search by title, author, or ISBN </label>
+            <label for="search" class='mobile'>Search by title, author, or ISBN </label>
           </form>
         </div>
         <div class="input-field right col s2">
-         <select material-select watch ng-model='value'>
-           <option value="" disabled selected>Sort by...</option>
+         <select material-select watch ng-model='value' class='mobile'>
+           <option value="" disabled selected><p>Sort by...</p></option>
            <option ng-repeat="option in sorts">{{option}}</option>
          </select>
         </div>
