@@ -7288,7 +7288,7 @@ main.ng-enter.ng-enter-active {
   cursor: pointer; }
 
 .page-wrapper {
-  padding-top: 65px; }
+  padding-top: 60px; }
 
 .my-side-nav {
   position: fixed;
@@ -7322,8 +7322,8 @@ main.ng-enter.ng-enter-active {
   margin-top: 15px; }
 
 .search-sort {
-  width: 62%;
-  left: 20%;
+  width: 79%;
+  left: 11%;
   position: fixed;
   z-index: 50;
   background-color: white; }
@@ -7379,10 +7379,7 @@ main.ng-enter.ng-enter-active {
   /*margin-bottom: 25px;*/ }
 
 .my-parallax {
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover; }
+  margin-top: -12px; }
 
 .divider-section {
   height: 350px; }
