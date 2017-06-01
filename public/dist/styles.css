@@ -7376,7 +7376,9 @@ main.ng-enter.ng-enter-active {
 .search {
   height: 60vh;
   background-image: url("../imgs/lib1.jpg");
-  /*margin-bottom: 25px;*/ }
+  background-attachment: fixed;
+  background-size: cover;
+  }
 
 .my-parallax {
   margin-top: -12px; }

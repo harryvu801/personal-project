@@ -165,6 +165,7 @@ passport.use(new Auth0Strategy({
 
     }
     db.createUserByAuth(data, (err, user) =>{
+      
       console.log('USER CREATED', user);
       return done(err, user[0]); // GOES TO SERIALIZE USER
     })
