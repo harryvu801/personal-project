@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
-// const config = require('./config.js');
+const config = require('./config.js');
 
 const app = module.exports = express();
 app.use(bodyParser.json());
@@ -131,10 +131,10 @@ app.post('/api/messages/post', (req, res) =>{
 
 
 passport.use(new Auth0Strategy({
-  domain:       "harryvu.auth0.com",
-  clientID:     "JOE8L_mVN5scHzj-umtZwYGE5tO5AYMU",
-  clientSecret: "ufPrSFuTNGI20tVmr7TbXS31mEcgfpjM0OJlCxJx8u98Hti2R5qPKl9VpgN2dySb",
-  callbackURL:  'http://localhost:3000/auth/callback'
+  domain:       config.auth0.domain,
+  clientID:     config.auth0.clientID,
+  clientSecret: config.auth0.clientSecret,
+  callbackURL:  config.auth0.callbackURL
 },
 (accessToken, refreshToken, extraParams, profile, done) => {
   // console.log(profile);
@@ -143,7 +143,7 @@ passport.use(new Auth0Strategy({
     if (!user) { //if there isn't one, we'll create one!
     console.log('CREATING USER');
     if (profile.name.familyName && profile.name.givenName) {
-      let data =
+      var data =
       [
         profile.name.givenName,
         profile.name.familyName,
@@ -154,7 +154,7 @@ passport.use(new Auth0Strategy({
 
     } else {
 
-      let data =
+      var data =
       [
         profile._json.user_metadata.first_name,
         profile._json.user_metadata.last_name,
@@ -165,7 +165,6 @@ passport.use(new Auth0Strategy({
 
     }
     db.createUserByAuth(data, (err, user) =>{
-
       console.log('USER CREATED', user);
       return done(err, user[0]); // GOES TO SERIALIZE USER
     })
