@@ -165,7 +165,7 @@ passport.use(new Auth0Strategy({
 
     }
     db.createUserByAuth(data, (err, user) =>{
-      
+
       console.log('USER CREATED', user);
       return done(err, user[0]); // GOES TO SERIALIZE USER
     })
@@ -220,6 +220,6 @@ app.get('/auth/logout', (req, res)=> {
 
 
 
-app.listen('3000', ()=>{
-  console.log("Successfully listening on : 3000")
+app.listen('8083', ()=>{
+  console.log("Successfully listening on : 8083")
 })
