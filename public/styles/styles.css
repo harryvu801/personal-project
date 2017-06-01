@@ -143,11 +143,13 @@ width: 100%;
 .search {
   height: 60vh;
   background-image: url("../imgs/lib1.jpg");
-  /*margin-bottom: 25px;*/
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .my-parallax {
   margin-top: -12px;
+
 }
 
 .divider-section {

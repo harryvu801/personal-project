@@ -165,8 +165,7 @@ passport.use(new Auth0Strategy({
 
     }
     db.createUserByAuth(data, (err, user) =>{
-     console.log("this is the data", data);
-	 console.log('USER CREATED', user);
+      console.log('USER CREATED', user);
       return done(err, user[0]); // GOES TO SERIALIZE USER
     })
   } else { //when we find the user, return it
@@ -221,5 +220,5 @@ app.get('/auth/logout', (req, res)=> {
 
 
 app.listen('8083', ()=>{
-  console.log("Successfully listening on : 80")
+  console.log("Successfully listening on : 8083")
 })
